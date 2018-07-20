@@ -53,7 +53,8 @@ export default function (options = {}) {
   let { resolve, reject, promise } = RSVP.defer(`ember-file-upload: ${options.label}`);
   let request = new XMLHttpRequest();
 
-  request.withCredentials = options.withCredentials;
+  // don't set withCredentials because of IE10 InvalidStateErrorException when uploading a document
+  // request.withCredentials = options.withCredentials;
 
   let aborted;
   promise.cancel = () => {
